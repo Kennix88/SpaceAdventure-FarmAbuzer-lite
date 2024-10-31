@@ -1,5 +1,7 @@
+import { PrismaConfig } from '@app/core/configs/prisma.config'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { PrismaModule } from 'nestjs-prisma'
 
 @Module({
   imports: [
@@ -8,6 +10,7 @@ import { ConfigModule } from '@nestjs/config'
       envFilePath: `.env`,
       cache: true,
     }),
+    PrismaModule.forRootAsync(PrismaConfig()),
   ],
   providers: [],
 })

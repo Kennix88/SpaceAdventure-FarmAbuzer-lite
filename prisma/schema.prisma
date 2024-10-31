@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_PATH")
+}
+
+model User {
+  id         Int        @id @default(autoincrement())
+  telegramId String?    @unique @map("telegram_id")
+  isGuard    Boolean    @default(false) @map("is_guard")
+  language   String?
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime   @updatedAt @map("updated_at")
+  profiles   Profiles[]
+
+  @@map("user")
+}
+
+model Profiles {
+  id              Int        @id @default(autoincrement())
+  name            String     @map("name")
+  enabled         Boolean    @default(true) @map("enabled")
+  isProxy         Boolean    @default(false) @map("is_proxy")
+  proxyIsNotValid Boolean    @default(false) @map("proxy_is_not_valid")
+  isLvlUp         Boolean    @default(true) @map("is_lvl_up")
+  isBuyGems       Boolean    @default(true) @map("is_buy_gems")
+  startData       StartData?
+  gameData        GameData?
+  createdAt       DateTime   @default(now()) @map("created_at")
+  updatedAt       DateTime   @updatedAt @map("updated_at")
+  nextStartAt     DateTime?  @map("next_start_at")
+  user            User       @relation(fields: [userId], references: [id])
+  userId          Int        @map("user_id")
+
+  @@map("profiles")
+}
+
+model StartData {
+  id             Int      @id @default(autoincrement())
+  initData       String
+  tgUserAgent    String   @map("telegram_user_agent")
+  tgTheme        String   @map("telegram_theme")
+  browserContext String?  @map("browser_context")
+  viewportHeight Int      @map("viewport_height")
+  viewportWidth  Int      @map("viewport_width")
+  proxy          String?
+  profiles       Profiles @relation(fields: [profilesId], references: [id])
+  profilesId     Int      @unique @map("profiles_id")
+
+  @@map("start_data")
+}
+
+model GameData {
+  id           Int      @id @default(autoincrement())
+  tgId         String?  @map("tg_id")
+  uuid         String?  @map("uuid")
+  username     String?  @map("username")
+  name         String?  @map("name")
+  isBlocked    Boolean? @map("is_blocked")
+  gems         Decimal? @map("gems")
+  money        Decimal? @map("money")
+  courceUSD    Decimal? @map("cource_usd")
+  courceRUB    Decimal? @map("cource_rub")
+  fullLvl      Int?     @map("full_lvl")
+  claimLvl     Int?     @map("claim_lvl")
+  claim        Decimal? @map("claim")
+  claimMaxLvl  Int?     @map("claim_max_lvl")
+  claimMax     Decimal? @map("claim_maxt")
+  fuelLvl      Int?     @map("fuel_lvl")
+  fuel         Decimal? @map("fuel")
+  shieldLvl    Int?     @map("shield_lvl")
+  shield       Int?     @map("shield")
+  shieldDamage Int?     @map("shield_damage")
+  dailyClaim   Int?     @map("daily_claim")
+  screenShot   String?  @map("screenshot")
+  referralLink String?  @map("refferal_link")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  profiles     Profiles @relation(fields: [profilesId], references: [id])
+  profilesId   Int      @unique @map("profiles_id")
+
+  @@map("game_data")
+}
