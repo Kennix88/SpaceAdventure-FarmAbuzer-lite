@@ -1,0 +1,72 @@
+{
+  "root": true,
+//  "env": {
+//    "node": true,
+//    "jest": true
+//  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "tsconfigRootDir": ".",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "sonarjs",
+    "prettier",
+    "@typescript-eslint/eslint-plugin",
+    "simple-import-sort"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "plugin:vitest/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:@typescript-eslint/strict-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "ignorePatterns": ["**/node_modules/**", "dist/**", "**/vitest.*.ts"],
+  "rules": {
+    // These rules are for reference only.
+    //#region eslint
+    "no-console": "off",
+    "class-methods-use-this": "off",
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+    "no-void": ["error", { "allowAsStatement": true }],
+    "spaced-comment": ["error", "always", { "line": { "markers": ["/", "#region", "#endregion"] } }],
+    //#endregion
+
+    //#region import
+    "import/no-default-export": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [["builtin", "external", "internal"]],
+        "newlines-between": "always",
+        "alphabetize": { "order": "asc", "caseInsensitive": true }
+      }
+    ],
+    "import/prefer-default-export": "off",
+    //#endregion
+
+    //#region @typescript-eslint
+    "@typescript-eslint/consistent-type-assertions": ["error", { "assertionStyle": "angle-bracket" }],
+    "@typescript-eslint/lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "@typescript-eslint/no-extraneous-class": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/restrict-template-expressions": ["error", { "allowNumber": true }],
+    //#endregion
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "simple-import-sort/imports": "error"
+  }
+}
