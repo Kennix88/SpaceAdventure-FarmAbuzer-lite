@@ -8,8 +8,7 @@ export const PrismaConfig = (): PrismaModuleAsyncOptions => ({
       log: ['warn', 'error'],
       datasources: {
         db: {
-          provider: 'sqlite',
-          url: config.getOrThrow<string>('DATABASE_PATH') || 'file:database/namedb.db',
+          url: config.getOrThrow<string>('DATABASE_PATH') || 'file:./database/namedb.db',
         },
       },
     },
