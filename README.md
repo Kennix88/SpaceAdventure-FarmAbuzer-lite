@@ -1,6 +1,6 @@
-<div style="text-align: center;">
+<div align='center'>
+<img src="./docs/assets/spaceAdventure.jpg" alt='spaceadventure' width='320'>
 
-![spaceadventure](./docs/assets/spaceAdventure.jpg)
 # SpaceAdventure-FarmAbuzer-lite
 The bot automatically plays the game "Space Adventure" (Telegram mini app). The lite version.
 
