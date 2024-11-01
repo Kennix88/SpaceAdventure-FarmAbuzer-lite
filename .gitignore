@@ -3,7 +3,7 @@
 .history
 .DS_Store
 dist
-docs
+#docs
 build
 
 # Logs
