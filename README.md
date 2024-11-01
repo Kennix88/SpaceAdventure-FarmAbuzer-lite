@@ -1,3 +1,8 @@
+[![X share](https://img.shields.io/badge/share-blue?style=for-the-badge&color=0891b2&labelColor=1c1917&logo=x&logoColor=FFFFFF&label=X-twitter)](https://x.com/intent/tweet?text=The%20bot%20automatically%20plays%20the%20game%20%22Space%20Adventure%22%20(Telegram%20mini%20app).%20The%20lite%20version.&url=https://github.com/Kennix88/SpaceAdventure-FarmAbuzer-lite/&hashtags=github,developer,opensource,scraping,free,code)
+[![Telegram share](https://img.shields.io/badge/share-blue?style=for-the-badge&color=0891b2&labelColor=1c1917&logo=telegram&logoColor=26A5E4&label=Telegram)](https://t.me/share/url?text=The%20bot%20automatically%20plays%20the%20game%20%22Space%20Adventure%22%20(Telegram%20mini%20app).%20The%20lite%20version.&url=https://github.com/Kennix88/SpaceAdventure-FarmAbuzer-lite/)
+[![Whatsapp share](https://img.shields.io/badge/share-blue?style=for-the-badge&color=0891b2&labelColor=1c1917&logo=whatsapp&logoColor=25D366&label=Whatsapp)](whatsapp://send?text=The%20bot%20automatically%20plays%20the%20game%20%22Space%20Adventure%22%20(Telegram%20mini%20app).%20The%20lite%20version.%20%20https://github.com/Kennix88/SpaceAdventure-FarmAbuzer-lite/)
+[![Viber share](https://img.shields.io/badge/share-blue?style=for-the-badge&color=0891b2&labelColor=1c1917&logo=whatsapp&logoColor=7360F2&label=Viber)](viber://forward?text=The%20bot%20automatically%20plays%20the%20game%20%22Space%20Adventure%22%20(Telegram%20mini%20app).%20The%20lite%20version.%20%20https://github.com/Kennix88/SpaceAdventure-FarmAbuzer-lite/)
+
 <div align='center'>
 <img src="./docs/assets/spaceAdventure.jpg" alt='spaceadventure' width='320'>
 
@@ -14,6 +19,8 @@ The bot automatically plays the game "Space Adventure" (Telegram mini app). The 
 
 </div>
 
+---
+
 ### Roadmap:
 
 - [x] Prisma schemes
@@ -27,9 +34,12 @@ The bot automatically plays the game "Space Adventure" (Telegram mini app). The 
   - [ ] User: adding profiles
   - [ ] User: removing profiles
   - [ ] User: changing profiles
+  - [ ] i18n
 - [ ] Space Adventure gaming
 - [ ] Install instructions
+  - [ ] Localization
 
+---
 
 ### 💵 Sponsorship:
 If you want to support me, I will be very happy about it. 🥺👉👈
