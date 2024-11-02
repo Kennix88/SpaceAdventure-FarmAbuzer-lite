@@ -24,7 +24,7 @@ The bot automatically plays the game "Space Adventure" (Telegram mini app). The 
 ### Roadmap:
 
 - [x] Prisma schemes
-- [ ] Pino logger
+- [x] Pino logger
 - [ ] Telegraf module
 - [ ] Telegram bot
   - [ ] Admin: User access
