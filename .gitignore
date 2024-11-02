@@ -6,6 +6,12 @@ dist
 #docs
 build
 
+#database
+*.sqlite
+*.sqlite3
+*.db
+*.database
+
 # Logs
 logs
 *.log

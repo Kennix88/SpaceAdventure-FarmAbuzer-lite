@@ -7,7 +7,7 @@ import type { INestApplication } from '@nestjs/common'
 import { NestFastifyApplication } from '@nestjs/platform-fastify'
 
 export async function middleware(app: NestFastifyApplication): Promise<INestApplication> {
-  // const isProduction = process.env.NODE_ENV === 'production'
+  const isProduction = process.env['NODE_ENV'] === 'production'
 
   await app.register(compression)
   await app.register(cookie)
@@ -16,7 +16,7 @@ export async function middleware(app: NestFastifyApplication): Promise<INestAppl
     secret: 'nEsdsfsdTjS-pRosdfdsfeCt-PeRfOsdfsdfrMaNcE-tEssdfTeD',
     rolling: true,
     saveUninitialized: true,
-    cookie: { secure: true },
+    cookie: { secure: isProduction },
   })
 
   const passport = new Authenticator()

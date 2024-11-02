@@ -1,20 +1,22 @@
 import { middleware } from '@app/app.middleware'
+import { genReqId } from '@app/shared/utils/genReqId.util'
 import { Logger } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify'
-import { LoggerErrorInterceptor, PinoLogger } from 'nestjs-pino'
+import { LoggerErrorInterceptor, Logger as PinoLogger } from 'nestjs-pino'
 
 import { AppModule } from './app.module'
 
 async function bootstrap(): Promise<string> {
-  // const isProduction = process.env.NODE_ENV === 'production'
+  const isProduction = process.env['NODE_ENV'] === 'production'
 
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter({
-      trustProxy: true,
+      trustProxy: isProduction,
       // Fastify has pino built in, but it use nestjs-pino, so we disable the logger.
       logger: false,
+      genReqId,
     }),
     {
       bufferLogs: true,
