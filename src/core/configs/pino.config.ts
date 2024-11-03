@@ -5,10 +5,10 @@ import pino from 'pino'
 import multistream = pino.multistream
 
 export const PinoConfig = (): LoggerModuleAsyncParams => ({
-  useFactory: (config: ConfigService) => ({
+  useFactory: () => ({
     pinoHttp: [
       {
-        // stream: process.stdout,
+        stream: process.stdout,
         timestamp: pino.stdTimeFunctions.isoTime,
         formatters: {
           bindings: (bindings) => {
@@ -22,7 +22,7 @@ export const PinoConfig = (): LoggerModuleAsyncParams => ({
           targets: [
             {
               target: 'pino-pretty',
-              level: config.get<string>('NODE_ENV') !== 'production' ? 'debug' : 'info',
+              level: 'trace',
               options: {
                 sync: true,
                 singleLine: true,

@@ -6,6 +6,9 @@
     "tsConfigPath": "tsconfig.build.json",
     "deleteOutDir": true,
     "builder": "swc",
-    "typeCheck": true
+    "typeCheck": true,
+    "assets": [
+      { "include": "core/i18n/**/*", "watchAssets": true }
+]
   }
 }
