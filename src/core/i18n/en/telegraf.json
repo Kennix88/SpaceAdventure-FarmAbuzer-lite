@@ -2,5 +2,12 @@
   "start": {
     "welcome": "Welcome to Farmabuzer Bot. Use /start to go to the main menu.",
     "access": "Access is denied to you. To get access, contact your administrator."
+  },
+  "menu": {
+    "main": "Main menu",
+    "admin": "Administration",
+    "settings": "Settings",
+    "about": "About",
+    "help": "Help"
   }
 }

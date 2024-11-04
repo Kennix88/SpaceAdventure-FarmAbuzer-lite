@@ -19,15 +19,21 @@ export class StartUpdate {
   @Start()
   async startCommand(@Ctx() ctx: Context) {
     try {
-      await ctx.setMyCommands([{ command: 'start', description: 'Main menu' }])
+      await ctx.setMyCommands([
+        {
+          command: 'start',
+          description: this.i18n.t('telegraf.menu.main', {
+            ...(!ctx.from?.language_code ? {} : { lang: ctx.from.language_code }),
+          }),
+        },
+      ])
+
       if (ctx.chat?.type !== 'private') {
         return
       }
       if (!ctx.from) {
         return
       }
-
-      this.logger.info({ tgUserId: ctx.from.id, ctx: ctx.from }, `ctx`)
 
       let getUser = await this.userService.getUser(ctx.from.id)
       this.logger.info({ tgUserId: ctx.from.id, user: getUser }, `We have received the user's data`)
@@ -37,13 +43,23 @@ export class StartUpdate {
           ctx.from.language_code,
           ctx.from.id == this.configService.get('ADMIN_TELEGRAM_ID'),
         )
+        this.logger.info({ tgUserId: ctx.from.id, user: getUser }, `The user is registered`)
       }
       if (!getUser?.isGuard) {
-        await ctx.replyWithHTML(
-          this.i18n.t('telegraf.start.access', {
-            ...(!ctx.from.language_code ? {} : { lang: ctx.from.language_code }),
-          }),
-        )
+        await ctx
+          .replyWithHTML(
+            this.i18n.t('telegraf.start.access', {
+              ...(!ctx.from.language_code ? {} : { lang: ctx.from.language_code }),
+            }),
+          )
+          .catch((e) => {
+            this.logger.error({
+              tgUserId: ctx.from?.id,
+              msg: `Error sending a message to Telegram`,
+              err: e,
+            })
+          })
+        this.logger.info({ tgUserId: ctx.from.id, user: getUser }, `Access is denied to the user!`)
         return
       }
 
@@ -53,7 +69,11 @@ export class StartUpdate {
         }),
       )
     } catch (e) {
-      this.logger.error({ tgUserId: ctx.from?.id, msg: `An error occurred when starting the bot`, err: e })
+      this.logger.error({
+        tgUserId: ctx.from?.id,
+        msg: `An error occurred when starting the bot`,
+        err: e,
+      })
     }
   }
 }

@@ -7,7 +7,13 @@ import { TelegramModule } from '@app/modules/telegram/telegram.module'
 import { UserModule } from '@app/modules/user/user.module'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { AcceptLanguageResolver, HeaderResolver, I18nModule, QueryResolver } from 'nestjs-i18n'
+import {
+  AcceptLanguageResolver,
+  HeaderResolver,
+  I18nJsonLoader,
+  I18nModule,
+  QueryResolver,
+} from 'nestjs-i18n'
 import { LoggerModule } from 'nestjs-pino'
 import { PrismaModule } from 'nestjs-prisma'
 
@@ -24,9 +30,19 @@ import { PrismaModule } from 'nestjs-prisma'
         loaderOptions: {
           path: path.join(__dirname, 'core/i18n/'),
           watch: true,
+          includeSubfolders: true,
         },
+        typesOutputPath: path.join(
+          __dirname,
+          '../src/shared/generated/i18n.generated.ts',
+        ),
       }),
-      resolvers: [{ use: QueryResolver, options: ['lang'] }, AcceptLanguageResolver, new HeaderResolver(['x-lang'])],
+      resolvers: [
+        { use: QueryResolver, options: ['lang'] },
+        AcceptLanguageResolver,
+        new HeaderResolver(['x-lang']),
+      ],
+      loader: I18nJsonLoader,
     }),
     LoggerModule.forRootAsync(PinoConfig()),
     PrismaModule.forRootAsync(PrismaConfig()),
