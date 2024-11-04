@@ -28,14 +28,29 @@ The bot automatically plays the game "Space Adventure" (Telegram mini app). The 
 - [x] Telegraf module
 - [x] i18n
 - [ ] Telegram bot
+  - [x] User: Main menu
   - [ ] Admin: User access
   - [ ] Admin: Sending daily logs, backups and statstics
   - [ ] Admin: Get system status
-  - [ ] User: Main menu
+  - [ ] Cron: backups
   - [ ] User: adding profiles
   - [ ] User: removing profiles
   - [ ] User: changing profiles
+  - [ ] User-Profile: Viewing the profile status
+  - [ ] Utils: User-Agent/Device generator
 - [ ] Space Adventure gaming
+  - [ ] Running the game on time
+  - [ ] Checking for passing the briefing
+  - [ ] Checking for account blocking
+  - [ ] Checking for technical work
+  - [ ] The function of collecting a daily reward for advertising
+  - [ ] Revenue collection function
+  - [ ] Roulette scrolling feature rewards for advertising
+  - [ ] The function of collecting a daily reward for advertising
+  - [ ] The functionality of repairing the shield and refueling the tanks. Including for advertising
+  - [ ] Auto-improvement functionality
+  - [ ] The functionality of completing tasks (Which can be completed)
+  - [ ] Profile analysis functionality
 - [ ] Install instructions
 - [ ] Localization project
 
