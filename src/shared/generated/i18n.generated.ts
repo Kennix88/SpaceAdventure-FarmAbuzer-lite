@@ -10,12 +10,18 @@ export type I18nTranslations = {
             "welcome": string;
             "access": string;
         };
+        "help": string;
+        "commands": {
+            "menu": string;
+        };
         "menu": {
             "main": string;
+            "addProfile": string;
+            "removeProfile": string;
+            "profiles": string;
             "admin": string;
-            "settings": string;
-            "about": string;
-            "help": string;
+            "giveAccess": string;
+            "logs": string;
         };
     };
 };

@@ -14,12 +14,32 @@ export class UserService {
     })
   }
 
-  async createUser(tgId: number | string, lang: string | undefined, _isGuard = false): Promise<User | null> {
+  async createUser(
+    tgId: number | string,
+    language: string | undefined,
+    _isGuard = false,
+  ): Promise<User | null> {
     return this.prismaService.user.create({
       data: {
         telegramId: String(tgId),
         isGuard: _isGuard,
-        language: lang,
+        language,
+      },
+    })
+  }
+
+  async updateUser(
+    id: number,
+    isGuard: boolean,
+    language: string | undefined,
+  ): Promise<User | null> {
+    return this.prismaService.user.update({
+      where: {
+        id,
+      },
+      data: {
+        isGuard,
+        language,
       },
     })
   }

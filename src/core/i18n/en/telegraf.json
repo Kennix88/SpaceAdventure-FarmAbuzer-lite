@@ -1,13 +1,19 @@
 {
   "start": {
     "welcome": "Welcome to Farmabuzer Bot. Use /start to go to the main menu.",
-    "access": "Access is denied to you. To get access, contact your administrator."
+    "access": "This is a private telegram bot. Access is denied to you. To get access, contact your administrator. Your telegram ID: <code>{id}</code>"
+  },
+  "help": "Commands:\n/start - Main menu\n/help - Help",
+  "commands": {
+    "menu": "Main menu"
   },
   "menu": {
     "main": "Main menu",
-    "admin": "Administration",
-    "settings": "Settings",
-    "about": "About",
-    "help": "Help"
+    "addProfile": "Add profile",
+    "removeProfile": "Remove profile",
+    "profiles": "Profiles",
+    "admin": "Admin menu",
+    "giveAccess": "Give access",
+    "logs": "Logs and backups"
   }
 }
