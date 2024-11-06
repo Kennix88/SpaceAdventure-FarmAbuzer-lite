@@ -11,6 +11,8 @@ The bot automatically plays the game "Space Adventure" (Telegram mini app). The 
 
 [![release](https://img.shields.io/github/package-json/v/Kennix88/SpaceAdventure-FarmAbuzer-lite?style=for-the-badge&color=0891b2&labelColor=1c1917)](https://github.com/Kennix88/SpaceAdventure-FarmAbuzer-lite/releases)
 [![License](https://img.shields.io/github/license/Kennix88/SpaceAdventure-FarmAbuzer-lite?style=for-the-badge&color=0891b2&labelColor=1c1917)](https://github.com/Kennix88/SpaceAdventure-FarmAbuzer-lite/blob/master/LICENSE)
+![GitHub Repo stars](https://img.shields.io/github/stars/Kennix88/SpaceAdventure-FarmAbuzer-lite?style=for-the-badge&color=0891b2&labelColor=1c1917)
+[![wakatime](https://wakatime.com/badge/user/9268c051-c861-45cc-b927-3babf56c56d9/project/09b5879d-966e-4069-b179-a6a66c5c799e.svg?style=for-the-badge&color=0891b2&logoColor=1c1917)](https://github.com/Kennix88/SpaceAdventure-FarmAbuzer-lite)
 [![Github followers](https://img.shields.io/github/followers/Kennix88?logo=github&style=for-the-badge&color=0891b2&labelColor=1c1917)](https://www.github.com/Kennix88)
 [![Telegram Channel](https://img.shields.io/endpoint?style=for-the-badge&color=0891b2&labelColor=1c1917&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fkennixdev&label=Channel)](https://t.me/KennixDev)
 [![Telegram Group](https://img.shields.io/endpoint?label=Group&style=for-the-badge&color=0891b2&labelColor=1c1917&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2FKennixDevGroup)](https://t.me/KennixDevGroup)
