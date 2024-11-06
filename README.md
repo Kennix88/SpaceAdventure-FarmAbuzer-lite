@@ -38,6 +38,7 @@ The bot automatically plays the game "Space Adventure" (Telegram mini app). The 
   - [ ] User: changing profiles
   - [ ] User-Profile: Viewing the profile status
   - [ ] Utils: User-Agent/Device generator
+  - [ ] Utils: initData parser
 - [ ] Space Adventure gaming
   - [ ] Running the game on time
   - [ ] Checking for passing the briefing

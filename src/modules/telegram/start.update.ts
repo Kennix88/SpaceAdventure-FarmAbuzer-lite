@@ -47,7 +47,7 @@ export class StartUpdate {
         getUser = await this.userService.createUser(
           ctx.from.id,
           ctx.from.language_code ? ctx.from.language_code : 'en',
-          ctx.from.id == this.configService.get('ADMIN_TELEGRAM_ID'),
+          ctx.from.id === this.configService.get<number>('ADMIN_TELEGRAM_ID'),
         )
         this.logger.info(
           { tgUserId: ctx.from.id, user: getUser },

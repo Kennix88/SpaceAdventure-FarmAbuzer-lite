@@ -26,6 +26,7 @@ import { PrismaModule } from 'nestjs-prisma'
     }),
     I18nModule.forRootAsync({
       useFactory: () => ({
+        disableMiddleware: true,
         fallbackLanguage: 'en',
         loaderOptions: {
           path: path.join(__dirname, 'core/i18n/'),

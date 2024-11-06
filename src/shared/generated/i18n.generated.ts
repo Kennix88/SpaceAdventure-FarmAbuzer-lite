@@ -23,6 +23,10 @@ export type I18nTranslations = {
             "giveAccess": string;
             "logs": string;
         };
+        "addProfile": {
+            "step1": string;
+            "step2": string;
+        };
     };
 };
 /* prettier-ignore */

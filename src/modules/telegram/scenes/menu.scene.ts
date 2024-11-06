@@ -1,3 +1,4 @@
+import { ProfilesService } from '@app/modules/game/services/profiles.service'
 import { Context } from '@app/modules/telegram/interfaces/telegrafContext.interface'
 import { StartUpdate } from '@app/modules/telegram/start.update'
 import { UserService } from '@app/modules/user/services/user.service'
@@ -6,6 +7,7 @@ import { ConfigService } from '@nestjs/config'
 import { I18nService } from 'nestjs-i18n'
 import { PinoLogger } from 'nestjs-pino'
 import {
+  Action,
   Command,
   Ctx,
   Scene,
@@ -21,13 +23,14 @@ export class MenuScene {
     private readonly configService: ConfigService,
     private readonly startUpdate: StartUpdate,
     private readonly userService: UserService,
+    private readonly profilesService: ProfilesService,
     private readonly i18n: I18nService<I18nTranslations>,
     private readonly logger: PinoLogger,
   ) {}
 
   @Start()
   @Command('start')
-  async startPay(@Ctx() ctx: Context) {
+  async startCommand(@Ctx() ctx: Context) {
     await ctx.scene.leave()
     await this.startUpdate.startCommand(ctx)
   }
@@ -36,6 +39,7 @@ export class MenuScene {
   async onSceneEnter(@Ctx() ctx: Context) {
     try {
       const getUser = await this.userService.getUser(ctx.from!.id)
+      const getProfiles = await this.profilesService.getProfiles(getUser!.id)
 
       const isAdmin =
         ctx.from?.id === this.configService.get('ADMIN_TELEGRAM_ID')
@@ -60,13 +64,14 @@ export class MenuScene {
                   ...(!getUser?.language ? {} : { lang: getUser.language }),
                 })}`,
                 'profiles',
+                !!getProfiles,
               ),
             ],
             [
               Markup.button.callback(
-                `➖➖➖ ${this.i18n.t('telegraf.menu.admin', {
+                `➖⬇️➖ ${this.i18n.t('telegraf.menu.admin', {
                   ...(!getUser?.language ? {} : { lang: getUser.language }),
-                })} ➖➖➖`,
+                })} ➖⬇️➖`,
                 'NO',
                 isAdmin,
               ),
@@ -104,13 +109,29 @@ export class MenuScene {
         msg: `When entering the menu scene`,
         err: e,
       })
+      await ctx.scene.leave()
       await this.startUpdate.startCommand(ctx)
+    }
+  }
+
+  @Action('addProfile')
+  async addProfile(@Ctx() ctx: Context) {
+    try {
+      await ctx.deleteMessage(ctx.callbackQuery?.message?.message_id)
+      await ctx.scene.enter('addProfile')
+    } catch (e) {
+      this.logger.error({
+        tgUserId: ctx.from?.id,
+        msg: `Error when alling the scene addProfile`,
+        err: e,
+      })
     }
   }
 
   @SceneLeave()
   async onSceneLeave(@Ctx() ctx: Context) {
     try {
+      // asd
     } catch (e) {
       this.logger.error({
         tgUserId: ctx.from?.id,
