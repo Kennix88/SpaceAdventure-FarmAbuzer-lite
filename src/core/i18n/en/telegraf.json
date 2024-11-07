@@ -14,10 +14,13 @@
     "profiles": "Profiles",
     "admin": "Admin menu",
     "giveAccess": "Give access",
-    "logs": "Logs and backups"
+    "logs": "Logs and backups",
+    "editName": "Edit name",
+    "notProxy": "Do not use a Proxy"
   },
   "addProfile": {
     "step1": "<b>Adding a profile</b>\n\nEnter the name of the profile:",
-    "step2": "<b>Adding a profile</b>\n\nEnter the initData\n\nExample: <code>query_id%3DAAHdfMzgdSaRtc-M%26user%3D%257B%2522id%2522%253A6459468%252C%2522first_name%2522%253A%2D0%225B9%2522%252C%2522last_name%2522%222%255BKennix88%255D%2522%252C%2522username%2522%253A%2522Kennix88%2522%252C%2522language_code%2522%253A%2522ru%2522%252C%2522is_premium%2522%253Atrue%252C%2522allows_write_to_pm%2522%253Atrue%257D%26auth_date%3D1725107911%26hash%3D836952342540935725e08bfc252c125a2deb48f2</code>\n\n<a href=\"https://github.com/Kennix88/SpaceAdventure-FarmAbuzer-lite/tree/master/docs/en/getInitData.md\">How to get</a>"
+    "step2": "<b>Adding a profile</b>\nName: <code>{name}</code>\n\nEnter the initData\n<a href=\"https://github.com/Kennix88/SpaceAdventure-FarmAbuzer-lite/tree/master/docs/en/getInitData.md\">How to get initData</a>",
+    "step3": "<b>Adding a profile</b>\nName: <code>{name}</code>\nName: <code>{initData}</code>\n\nEnter the HTTP proxy\n\nFormat: <code>ip:port:login:password</code>\nExample: <code>92.119.193.26:3000:x4oefdg2kv:p0asdasda1q</code>\n❗ONLY HTTP PROXY\n\nYou can continue without a proxy, but we do not recommend that you do this, especially if you have more than one account in the game, this may lead to account blocking!"
   }
 }

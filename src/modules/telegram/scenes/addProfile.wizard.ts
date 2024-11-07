@@ -12,7 +12,6 @@ import {
   Ctx,
   Message,
   On,
-  SceneLeave,
   Start,
   Wizard,
   WizardStep,
@@ -37,24 +36,38 @@ export class AddProfileWizard {
   @WizardStep(1)
   async onSceneEnter(@Ctx() ctx: WizardContext) {
     try {
+      await ctx
+        .reply(
+          this.i18n.t('telegraf.addProfile.step1', {
+            ...(!ctx.from?.language_code
+              ? {}
+              : { lang: ctx.from.language_code }),
+          }),
+          {
+            parse_mode: 'HTML',
+            link_preview_options: {
+              is_disabled: true,
+            },
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  Markup.button.callback(
+                    `📍 ${this.i18n.t('telegraf.menu.main', {
+                      ...(!ctx.from?.language_code
+                        ? {}
+                        : { lang: ctx.from.language_code }),
+                    })}`,
+                    'backMainMenu',
+                  ),
+                ],
+              ],
+            },
+          },
+        )
+        .then((m) => {
+          ctx.wizard.state['deleteMessageId'] = m.message_id
+        })
       ctx.wizard.next()
-      await ctx.replyWithHTML(
-        this.i18n.t('telegraf.addProfile.step1', {
-          ...(!ctx.from?.language_code ? {} : { lang: ctx.from.language_code }),
-        }),
-        Markup.inlineKeyboard([
-          [
-            Markup.button.callback(
-              `↩ ${this.i18n.t('telegraf.menu.main', {
-                ...(!ctx.from?.language_code
-                  ? {}
-                  : { lang: ctx.from.language_code }),
-              })}`,
-              'backMainMenu',
-            ),
-          ],
-        ]),
-      )
     } catch (e) {
       this.logger.error({
         tgUserId: ctx.from?.id,
@@ -79,11 +92,67 @@ export class AddProfileWizard {
     }
   }
 
+  @Action('back')
+  async back(
+    @Ctx()
+    ctx: WizardContext & { wizard: { state: { deleteMessageId: number } } },
+  ) {
+    try {
+      await ctx.deleteMessage(ctx.wizard.state['deleteMessageId'])
+      ctx.wizard.back()
+    } catch (e) {
+      this.logger.error({
+        tgUserId: ctx.from?.id,
+        msg: `Error when back`,
+        err: e,
+      })
+    }
+  }
+
   @On('text')
   @WizardStep(2)
-  async onName(@Message('text') msg: string, @Ctx() ctx: WizardContext) {
+  async onName(
+    @Message('text') msg: string,
+    @Ctx()
+    ctx: WizardContext & { wizard: { state: { deleteMessageId: number } } },
+  ) {
     try {
+      await ctx.deleteMessage(ctx.wizard.state['deleteMessageId'])
+      await ctx.deleteMessage()
       ctx.wizard.state['name'] = msg
+      await ctx
+        .reply(
+          this.i18n.t('telegraf.addProfile.step2', {
+            ...(!ctx.from?.language_code
+              ? {}
+              : { lang: ctx.from.language_code }),
+            args: { name: msg },
+          }),
+          {
+            parse_mode: 'HTML',
+            link_preview_options: {
+              is_disabled: true,
+            },
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  Markup.button.callback(
+                    `📍 ${this.i18n.t('telegraf.menu.main', {
+                      ...(!ctx.from?.language_code
+                        ? {}
+                        : { lang: ctx.from.language_code }),
+                    })}`,
+                    'backMainMenu',
+                  ),
+                ],
+              ],
+            },
+          },
+        )
+        .then((m) => {
+          ctx.wizard.state['deleteMessageId'] = m.message_id
+        })
+      ctx.wizard.next()
     } catch (e) {
       this.logger.error({
         tgUserId: ctx.from?.id,
@@ -94,16 +163,69 @@ export class AddProfileWizard {
     }
   }
 
-  @SceneLeave()
-  async onSceneLeave(@Ctx() ctx: Context) {
+  @On('text')
+  @WizardStep(3)
+  async onInitData(
+    @Message('text') msg: string,
+    @Ctx()
+    ctx: WizardContext & {
+      wizard: { state: { deleteMessageId: number; name: string } }
+    },
+  ) {
     try {
-      // ctx.session.addProfile = undefined
+      await ctx.deleteMessage(ctx.wizard.state['deleteMessageId'])
+      await ctx.deleteMessage()
+      ctx.wizard.state['initData'] = msg
+      await ctx
+        .reply(
+          this.i18n.t('telegraf.addProfile.step3', {
+            ...(!ctx.from?.language_code
+              ? {}
+              : { lang: ctx.from.language_code }),
+            args: { name: ctx.wizard.state['name'], initData: msg },
+          }),
+          {
+            parse_mode: 'HTML',
+            link_preview_options: {
+              is_disabled: true,
+            },
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  Markup.button.callback(
+                    `❌ ${this.i18n.t('telegraf.menu.notProxy', {
+                      ...(!ctx.from?.language_code
+                        ? {}
+                        : { lang: ctx.from.language_code }),
+                    })}`,
+                    'notProxy',
+                  ),
+                ],
+                [
+                  Markup.button.callback(
+                    `📍 ${this.i18n.t('telegraf.menu.main', {
+                      ...(!ctx.from?.language_code
+                        ? {}
+                        : { lang: ctx.from.language_code }),
+                    })}`,
+                    'backMainMenu',
+                  ),
+                ],
+              ],
+            },
+          },
+        )
+        .then((m) => {
+          ctx.wizard.state['deleteMessageId'] = m.message_id
+        })
+      ctx.wizard.next()
     } catch (e) {
       this.logger.error({
         tgUserId: ctx.from?.id,
-        msg: `Error when exiting the scene addProfile`,
+        msg: `When entering the addProfile scene step3`,
         err: e,
       })
+      await ctx.scene.leave()
     }
   }
 }

@@ -31,12 +31,7 @@ export class StartUpdate {
         },
       ])
 
-      if (ctx.chat?.type !== 'private') {
-        return
-      }
-      if (!ctx.from) {
-        return
-      }
+      if (ctx.chat?.type !== 'private' || !ctx.from) return
 
       let getUser = await this.userService.getUser(ctx.from.id)
       this.logger.info(

@@ -22,10 +22,13 @@ export type I18nTranslations = {
             "admin": string;
             "giveAccess": string;
             "logs": string;
+            "editName": string;
+            "notProxy": string;
         };
         "addProfile": {
             "step1": string;
             "step2": string;
+            "step3": string;
         };
     };
 };

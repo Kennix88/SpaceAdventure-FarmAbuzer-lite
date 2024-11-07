@@ -6,15 +6,7 @@ import { I18nTranslations } from '@app/shared/generated/i18n.generated'
 import { ConfigService } from '@nestjs/config'
 import { I18nService } from 'nestjs-i18n'
 import { PinoLogger } from 'nestjs-pino'
-import {
-  Action,
-  Command,
-  Ctx,
-  Scene,
-  SceneEnter,
-  SceneLeave,
-  Start,
-} from 'nestjs-telegraf'
+import { Action, Command, Ctx, Scene, SceneEnter, Start } from 'nestjs-telegraf'
 import { Markup } from 'telegraf'
 
 @Scene('menu')
@@ -128,16 +120,16 @@ export class MenuScene {
     }
   }
 
-  @SceneLeave()
-  async onSceneLeave(@Ctx() ctx: Context) {
-    try {
-      // asd
-    } catch (e) {
-      this.logger.error({
-        tgUserId: ctx.from?.id,
-        msg: `Error when exiting the scene menu`,
-        err: e,
-      })
-    }
-  }
+  // @SceneLeave()
+  // async onSceneLeave(@Ctx() ctx: Context) {
+  //   try {
+  //     // asd
+  //   } catch (e) {
+  //     this.logger.error({
+  //       tgUserId: ctx.from?.id,
+  //       msg: `Error when exiting the scene menu`,
+  //       err: e,
+  //     })
+  //   }
+  // }
 }
