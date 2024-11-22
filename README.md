@@ -71,3 +71,8 @@ If you want to support me, I will be very happy about it. 🥺👉👈
 - KuCoin ID: `208825167`
 - OKX ID: `178528329853476864`
 - Telegram Wallet: [@kennix88](https://t.me/Kennix88)
+
+### ⭐ Stargazers:
+[![Stargazers repo roster for @Kennix88/SpaceAdventure-FarmAbuzer-lite](https://reporoster.com/stars/dark/Kennix88/SpaceAdventure-FarmAbuzer-lite)](https://github.com/Kennix88/SpaceAdventure-FarmAbuzer-lite/stargazers)
+### 🍴 Forkers:
+[![Forkers repo roster for @Kennix88/SpaceAdventure-FarmAbuzer-lite](https://reporoster.com/forks/dark/Kennix88/SpaceAdventure-FarmAbuzer-lite)](https://github.com/Kennix88/SpaceAdventure-FarmAbuzer-lite/network/members)
